@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import StatusBar from '../components/StatusBar'
 
 // ─── Figma Asset URLs ────────────────────────────────────────────────────────
@@ -37,6 +38,7 @@ const ASSETS = {
   card6: 'https://www.figma.com/api/mcp/asset/5ca1c517-5657-4783-9b21-15c6e56d3bbe',
   // Bottom nav icons
   navChat: 'https://www.figma.com/api/mcp/asset/289f92ba-c8ab-4e35-87be-1bdea39fe508',
+  navChatActive: 'https://www.figma.com/api/mcp/asset/38938ff5-cf79-4ba2-babf-66fb19559e3d',
   navHome: 'https://www.figma.com/api/mcp/asset/049db54d-396e-4f6c-8021-8b4d14eada15',
   navProfile: 'https://www.figma.com/api/mcp/asset/cf0a53a6-c28b-4226-b6e2-a9db17f33215',
   navApps: 'https://www.figma.com/api/mcp/asset/f7800916-9891-4f98-9863-5c365ef0ad90',
@@ -62,14 +64,14 @@ const CATEGORIES = [
 ]
 
 // ─── Sub-components ────────────────────────────────────────────────────────────
-function SearchBar({ onFilter }) {
+function SearchBar({ onFilter, onSearch }) {
   return (
     <div className="flex items-center gap-1 px-6 py-0">
       {/* Search input */}
-      <div className="flex items-center gap-4 flex-1 h-[56px] bg-white/10 rounded-[10px] px-6">
+      <button onClick={onSearch} className="flex items-center gap-4 flex-1 h-[56px] bg-white/10 rounded-[10px] px-6 border-0 cursor-pointer text-left">
         <img src={ASSETS.iconSearch} alt="" className="w-6 h-6 shrink-0" />
         <span className="text-white text-[16px] font-medium">Search your agent...</span>
-      </div>
+      </button>
       {/* Filter button */}
       <button onClick={onFilter} className="w-[56px] h-[56px] bg-white/10 rounded-[12px] flex items-center justify-center shrink-0 border-0 cursor-pointer">
         <img src={ASSETS.iconFilter} alt="Filter" className="w-6 h-6" />
@@ -103,9 +105,9 @@ function StarRating({ stars }) {
   )
 }
 
-function AgentCard({ img, tag, stars, author, authorInitial, title, price }) {
+function AgentCard({ img, tag, stars, author, authorInitial, title, price, onClick }) {
   return (
-    <div className="flex flex-col rounded-[10px] overflow-hidden shrink-0 w-[155px]">
+    <div onClick={onClick} className="flex flex-col rounded-[10px] overflow-hidden shrink-0 w-[155px] cursor-pointer">
       {/* Image area with overlays */}
       <div className="relative h-[100px]">
         <img src={img} alt={title} className="w-full h-full object-cover" />
@@ -137,11 +139,11 @@ function AgentCard({ img, tag, stars, author, authorInitial, title, price }) {
   )
 }
 
-function CardsRow({ items }) {
+function CardsRow({ items, onCardClick }) {
   return (
     <div className="flex gap-[17px] overflow-x-auto scroll-hide pb-1">
       {items.map((item, i) => (
-        <AgentCard key={i} {...item} />
+        <AgentCard key={i} {...item} onClick={onCardClick} />
       ))}
     </div>
   )
@@ -236,7 +238,7 @@ function Categories() {
   )
 }
 
-function BottomNav() {
+function BottomNav({ onChat }) {
   return (
     <div className="shrink-0 relative h-[88px]">
       {/* Gradient fade */}
@@ -246,7 +248,10 @@ function BottomNav() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-[#111]/70 backdrop-blur-md" />
         <div className="relative z-10 h-full flex items-center justify-between px-[6px]">
           {/* Chat */}
-          <button className="w-[51px] h-[54px] rounded-[10px] bg-white/10 flex items-center justify-center border-0 cursor-pointer">
+          <button
+            onClick={onChat}
+            className="w-[51px] h-[54px] rounded-[10px] bg-white/10 flex items-center justify-center border-0 cursor-pointer"
+          >
             <img src={ASSETS.navChat} alt="Chat" className="w-[22px] h-[22px]" />
           </button>
           {/* Profile */}
@@ -277,13 +282,13 @@ function BottomNav() {
 }
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
-export default function HomePage({ onSeeAllTrending, onFilter }) {
+export default function HomePage({ onSeeAllTrending, onFilter, onSearch, onAgentClick, onChat }) {
   return (
     <div className="flex flex-col h-full bg-black" style={{ fontFamily: "'Montserrat', sans-serif" }}>
       <StatusBar />
 
       <div className="flex-1 overflow-y-auto scroll-hide flex flex-col gap-[30px] py-[12px]">
-        <SearchBar onFilter={onFilter} />
+        <SearchBar onFilter={onFilter} onSearch={onSearch} />
 
         <BannerSlide />
 
@@ -291,21 +296,21 @@ export default function HomePage({ onSeeAllTrending, onFilter }) {
 
         <div className="px-6">
           <SectionHeader title="Trending" onSeeAll={onSeeAllTrending} />
-          <CardsRow items={TRENDING} />
+          <CardsRow items={TRENDING} onCardClick={onAgentClick} />
         </div>
 
         <div className="px-6">
           <SectionHeader title="Tokenized Items" />
-          <CardsRow items={TOKENIZED} />
+          <CardsRow items={TOKENIZED} onCardClick={onAgentClick} />
         </div>
 
         <div className="px-6 pb-2">
           <SectionHeader title="Top Products" />
-          <CardsRow items={TOP_PRODUCTS} />
+          <CardsRow items={TOP_PRODUCTS} onCardClick={onAgentClick} />
         </div>
       </div>
 
-      <BottomNav />
+      <BottomNav onChat={onChat} />
     </div>
   )
 }
