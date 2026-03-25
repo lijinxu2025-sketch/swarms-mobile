@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import StatusBar from '../components/StatusBar'
 
-const BACK_ICON = 'https://www.figma.com/api/mcp/asset/09454fa1-bf05-4a27-a765-ac7e2602ed83'
+const BACK_ICON = '/image/shared_backIcon.webp'
 
 const PRODUCT_TYPES = ['All', 'Prompt', 'Agents', 'Tools']
 const CATEGORIES    = ['All', 'Non x402', 'x402', 'Finance', 'Healthcare', 'Education', 'Sales', 'Research', 'Public Safety', 'Marketing', 'Customer Support', 'Other']

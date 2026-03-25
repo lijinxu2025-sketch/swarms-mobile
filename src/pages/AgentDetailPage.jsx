@@ -3,18 +3,18 @@ import StatusBar from '../components/StatusBar'
 
 // ─── Figma Asset URLs ─────────────────────────────────────────────────────────
 const ASSETS = {
-  heroBg:         'https://www.figma.com/api/mcp/asset/cba07ebc-ca5a-4ed4-9e19-572b0ed0f07b',
-  authorAvatar:   'https://www.figma.com/api/mcp/asset/274c6f28-b821-473d-b753-40027dd66c40',
-  copyIcon:       'https://www.figma.com/api/mcp/asset/b111a3c1-4085-48aa-8a4e-95f00fa8c6ca',
-  downloadIcon:   'https://www.figma.com/api/mcp/asset/dd45c07f-73f7-4220-958b-037622285664',
-  aiIcon:         'https://www.figma.com/api/mcp/asset/f926fea7-35e0-4176-99ea-24458573c1d6',
-  genImgIcon:     'https://www.figma.com/api/mcp/asset/e39b1a97-1bd1-4845-8210-8705395b48a6',
-  generatedImg:   'https://www.figma.com/api/mcp/asset/63d05d3a-ae64-43ee-89d9-573d89a2c771',
-  recCard1:       'https://www.figma.com/api/mcp/asset/c009a576-060b-45a4-8e52-948c6ff77c46',
-  recCard2:       'https://www.figma.com/api/mcp/asset/543cd4ff-d19a-4307-9e71-49a2b76fa172',
-  shareIcon:      'https://www.figma.com/api/mcp/asset/4e3f1908-a548-4674-90ba-3bb7e772a599',
-  cartIcon:       'https://www.figma.com/api/mcp/asset/8d45e8b3-ee6c-4fb8-86e5-576c26259b44',
-  starIcon:       'https://www.figma.com/api/mcp/asset/e1b391ae-97fa-45a7-b0ad-4d77656beb84',
+  heroBg:         '/image/agent_heroBg.webp',
+  authorAvatar:   '/image/agent_authorAvatar.webp',
+  copyIcon:       '/image/agent_copyIcon.webp',
+  downloadIcon:   '/image/agent_downloadIcon.webp',
+  aiIcon:         '/image/agent_aiIcon.webp',
+  genImgIcon:     '/image/agent_genImgIcon.webp',
+  generatedImg:   '/image/agent_generatedImg.webp',
+  recCard1:       '/image/agent_recCard1.webp',
+  recCard2:       '/image/agent_recCard2.webp',
+  shareIcon:      '/image/agent_shareIcon.webp',
+  cartIcon:       '/image/agent_cartIcon.webp',
+  starIcon:       '/image/agent_starIcon.webp',
 }
 
 const DESCRIPTION = `Quant Trader Agent is an elite quantitative analyst specializing in comprehensive financial analysis across all asset classes and market conditions. It synthesizes technical indicators, fundamental valuations, market sentiment, and macroeconomic trends into actionable intelligence with precise price targets and risk parameters.

@@ -1,14 +1,14 @@
 import StatusBar from '../components/StatusBar'
 
-const BACK_ICON = 'https://www.figma.com/api/mcp/asset/09454fa1-bf05-4a27-a765-ac7e2602ed83'
+const BACK_ICON = '/image/shared_backIcon.webp'
 
 const ALL_TRENDING = [
-  { img: 'https://www.figma.com/api/mcp/asset/2916443c-41b4-4d68-88c2-9349ea573be6', tag: 'Prompt', stars: 5, author: 'Playeds',        authorInitial: 'P', title: 'Pineapple Agent',      price: 'Free'      },
-  { img: 'https://www.figma.com/api/mcp/asset/35d75c72-a1d9-4f3c-9d3d-0db5641a6706', tag: 'Prompt', stars: 5, author: 'QuantAgentDev',  authorInitial: 'Q', title: 'Quant Trader Agent',  price: 'US$15.00'  },
-  { img: 'https://www.figma.com/api/mcp/asset/012a4018-5ba7-4fb9-9cde-9c29e8570eb0', tag: 'Prompt', stars: 5, author: 'Playeds',        authorInitial: 'P', title: 'Equity Analysis...',  price: 'US$10.00'  },
-  { img: 'https://www.figma.com/api/mcp/asset/849da9a0-396c-47b7-b973-1412f98f8450', tag: 'Agent',  stars: 5, author: 'QuantAgentDev',  authorInitial: 'Q', title: 'Quant Trader Agent',  price: 'US$5.00'   },
-  { img: 'https://www.figma.com/api/mcp/asset/f125b9b6-2481-4f80-822b-eab86becae53', tag: 'Prompt', stars: 5, author: 'Playeds',        authorInitial: 'P', title: 'Apple Agent',         price: 'US$25.00'  },
-  { img: 'https://www.figma.com/api/mcp/asset/5ca1c517-5657-4783-9b21-15c6e56d3bbe', tag: 'Agent',  stars: 5, author: 'Euroswarms',     authorInitial: 'E', title: 'LiveFetch',           price: 'US$35.00'  },
+  { img: '/image/home_card1.webp', tag: 'Prompt', stars: 5, author: 'Playeds',        authorInitial: 'P', title: 'Pineapple Agent',      price: 'Free'      },
+  { img: '/image/home_card2.webp', tag: 'Prompt', stars: 5, author: 'QuantAgentDev',  authorInitial: 'Q', title: 'Quant Trader Agent',  price: 'US$15.00'  },
+  { img: '/image/home_card3.webp', tag: 'Prompt', stars: 5, author: 'Playeds',        authorInitial: 'P', title: 'Equity Analysis...',  price: 'US$10.00'  },
+  { img: '/image/home_card4.webp', tag: 'Agent',  stars: 5, author: 'QuantAgentDev',  authorInitial: 'Q', title: 'Quant Trader Agent',  price: 'US$5.00'   },
+  { img: '/image/home_card5.webp', tag: 'Prompt', stars: 5, author: 'Playeds',        authorInitial: 'P', title: 'Apple Agent',         price: 'US$25.00'  },
+  { img: '/image/home_card6.webp', tag: 'Agent',  stars: 5, author: 'Euroswarms',     authorInitial: 'E', title: 'LiveFetch',           price: 'US$35.00'  },
 ]
 
 function AgentCard({ img, tag, stars, author, authorInitial, title, price }) {

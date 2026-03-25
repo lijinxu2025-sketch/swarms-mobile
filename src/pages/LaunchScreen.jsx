@@ -1,5 +1,5 @@
-const BG     = 'https://www.figma.com/api/mcp/asset/4d3b558a-be66-42ce-a59a-28bebb419053'
-const LOGO   = 'https://www.figma.com/api/mcp/asset/50dd0832-5032-496a-b0a1-fe1284450cfb'
+const BG     = '/image/launch_bg.webp'
+const LOGO   = '/image/launch_logo.webp'
 
 export default function LaunchScreen({ onGetStarted }) {
   return (

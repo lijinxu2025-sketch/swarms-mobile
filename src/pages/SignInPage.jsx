@@ -2,16 +2,16 @@ import { useState } from 'react'
 
 // ─── Figma Asset URLs ──────────────────────────────────────────────────────────
 const ASSETS = {
-  logo:        'https://www.figma.com/api/mcp/asset/5a218323-6408-4a8d-adee-42b57570b814',
-  emailIcon:   'https://www.figma.com/api/mcp/asset/be69c63e-2b75-4e88-984b-35d972334e05',
-  lockIcon:    'https://www.figma.com/api/mcp/asset/c70ce0d3-c2f9-416b-976c-2fd403426c02',
-  eyeSlash:    'https://www.figma.com/api/mcp/asset/6991a25c-9f60-45c4-ab5c-fbb52834afb2',
-  dividerL:    'https://www.figma.com/api/mcp/asset/9c44a205-3d7b-425f-9605-474e92cf64ed',
-  dividerR:    'https://www.figma.com/api/mcp/asset/bf5a4db6-0a6a-4c23-b312-d4227d1e60c7',
-  google:      'https://www.figma.com/api/mcp/asset/b8f67996-8fe0-4d31-8d98-809b6d0c2031',
-  twitter:     'https://www.figma.com/api/mcp/asset/87aaca34-fcf8-47e7-bc98-4589aa3145d3',
-  github:      'https://www.figma.com/api/mcp/asset/b6acab38-afe1-4356-90b3-f51d309bee95',
-  discord:     'https://www.figma.com/api/mcp/asset/3afa02e2-c1ad-4a30-a1be-96fcb4a10acb',
+  logo:        '/image/signin_logo.webp',
+  emailIcon:   '/image/signin_emailIcon.webp',
+  lockIcon:    '/image/signin_lockIcon.webp',
+  eyeSlash:    '/image/signin_eyeSlash.webp',
+  dividerL:    '/image/signin_dividerL.webp',
+  dividerR:    '/image/signin_dividerR.webp',
+  google:      '/image/signin_google.webp',
+  twitter:     '/image/signin_twitter.webp',
+  github:      '/image/signin_github.webp',
+  discord:     '/image/signin_discord.webp',
 }
 
 const SOCIAL_BUTTONS = [

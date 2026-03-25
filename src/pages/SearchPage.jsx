@@ -2,22 +2,22 @@ import StatusBar from '../components/StatusBar'
 
 // ─── Figma Asset URLs ─────────────────────────────────────────────────────────
 const ASSETS = {
-  iconSearch: 'https://www.figma.com/api/mcp/asset/11c1464b-dc85-4240-8516-6e4a0849a36d',
+  iconSearch: '/image/search_iconSearch.webp',
   // Recent chips
-  recentQuantTrader: 'https://www.figma.com/api/mcp/asset/102e0a97-a4a4-4c1c-a43c-3e6b5632fb94',
-  recentCrCa:        'https://www.figma.com/api/mcp/asset/a7490efa-e43d-4d57-b4c1-081d6b16d0f5',
+  recentQuantTrader: '/image/search_recentQuantTrader.webp',
+  recentCrCa:        '/image/search_recentCrCa.webp',
   // Top Agents
-  clawdCorp:         'https://www.figma.com/api/mcp/asset/5f93e772-f405-4750-ac57-a97a9f7d5b32',
-  quantTrader:       'https://www.figma.com/api/mcp/asset/3b0651bf-f210-4d8f-bef2-1ce1b07a41f7',
-  luaf:              'https://www.figma.com/api/mcp/asset/489649db-57ed-4900-a570-7b60d9ab9919',
+  clawdCorp:         '/image/search_clawdCorp.webp',
+  quantTrader:       '/image/search_quantTrader.webp',
+  luaf:              '/image/search_luaf.webp',
   // Prompt
-  whaleIntel:        'https://www.figma.com/api/mcp/asset/c6834788-2c53-422a-a7be-ad3dd0977d71',
-  youtube:           'https://www.figma.com/api/mcp/asset/fbfbaf4a-e4ba-4178-b8eb-124cebf86f20',
-  freePrizes:        'https://www.figma.com/api/mcp/asset/96bbde53-53f0-4a90-8ed1-6ca529dbdbe2',
+  whaleIntel:        '/image/search_whaleIntel.webp',
+  youtube:           '/image/search_youtube.webp',
+  freePrizes:        '/image/search_freePrizes.webp',
   // Tools
-  fwafwafwa:         'https://www.figma.com/api/mcp/asset/008c2842-7fcc-45a9-908c-bb48ed29bda1',
-  swarmsLaunchpad:   'https://www.figma.com/api/mcp/asset/d52fc4ae-a8d4-4f66-884f-2175c732beae',
-  claudeCode:        'https://www.figma.com/api/mcp/asset/75b33841-f7bb-493d-ac99-a0ae6c181bcf',
+  fwafwafwa:         '/image/search_fwafwafwa.webp',
+  swarmsLaunchpad:   '/image/search_swarmsLaunchpad.webp',
+  claudeCode:        '/image/search_claudeCode.webp',
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────

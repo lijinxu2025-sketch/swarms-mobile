@@ -3,29 +3,29 @@ import StatusBar from '../components/StatusBar'
 
 // ─── Figma Asset URLs ─────────────────────────────────────────────────────────
 const ASSETS = {
-  logo:          'https://www.figma.com/api/mcp/asset/14524825-edc1-470e-b152-27e47a7775b4',
-  editIcon:      'https://www.figma.com/api/mcp/asset/9ab7fe81-22b6-4653-9648-3ca04023c972',
-  menuIcon:      'https://www.figma.com/api/mcp/asset/97115b49-ef42-439f-87d7-ac9605d3bf0c',
-  attachIcon:    'https://www.figma.com/api/mcp/asset/150de584-d3c1-4ee4-8735-1f82812682ae',
-  micIcon:       'https://www.figma.com/api/mcp/asset/86fde8d9-0031-442a-8684-f21527ddc2fb',
-  arrowUp:       'https://www.figma.com/api/mcp/asset/925eed18-fd86-477c-948f-ebcf87bed244',
+  logo:          '/image/chat_logo.webp',
+  editIcon:      '/image/chat_editIcon.webp',
+  menuIcon:      '/image/chat_menuIcon.webp',
+  attachIcon:    '/image/chat_attachIcon.webp',
+  micIcon:       '/image/chat_micIcon.webp',
+  arrowUp:       '/image/chat_arrowUp.webp',
   // Drawer icons
-  searchIcon:    'https://www.figma.com/api/mcp/asset/f5058d44-a128-4144-b31c-6126516a091c',
-  newChatIcon:   'https://www.figma.com/api/mcp/asset/4d7b228a-6082-47c6-8dd8-2648648ff4ff',
-  squareIcon:    'https://www.figma.com/api/mcp/asset/552a9af7-1b7a-4580-8990-0402dee8e63a',
-  settingsIcon:  'https://www.figma.com/api/mcp/asset/a3730dd0-fe8a-472f-b9f0-b8f989797cbb',
+  searchIcon:    '/image/chat_searchIcon.webp',
+  newChatIcon:   '/image/chat_newChatIcon.webp',
+  squareIcon:    '/image/chat_squareIcon.webp',
+  settingsIcon:  '/image/chat_settingsIcon.webp',
   // Bottom nav
-  navChatFilled: 'https://www.figma.com/api/mcp/asset/38938ff5-cf79-4ba2-babf-66fb19559e3d',
-  navProfile:    'https://www.figma.com/api/mcp/asset/061aeff6-c8fa-4ba0-9755-2db289030197',
-  navHomeIcon:   'https://www.figma.com/api/mcp/asset/0a9ca5cc-8bff-481f-b0fa-f4552da72cb2',
-  navApps:       'https://www.figma.com/api/mcp/asset/75e22f32-cd65-4e04-8f7c-695213e73d59',
+  navChatFilled: '/image/chat_navChatFilled.webp',
+  navProfile:    '/image/chat_navProfile.webp',
+  navHomeIcon:   '/image/chat_navHomeIcon.webp',
+  navApps:       '/image/chat_navApps.webp',
   // Assistant message icons
-  swarmsAvatar:  'https://www.figma.com/api/mcp/asset/5f7e35ab-6183-41dd-946c-71252885b17a',
-  soundIcon:     'https://www.figma.com/api/mcp/asset/2d6331cd-4c45-4bcc-a457-7fdaf880a8c4',
-  copyIcon:      'https://www.figma.com/api/mcp/asset/0d837807-44fc-488f-a45e-f70ad2f666df',
-  syncIcon:      'https://www.figma.com/api/mcp/asset/520cddba-a46d-456b-9caf-f049644c017c',
-  thumbDownIcon: 'https://www.figma.com/api/mcp/asset/a5652e5f-cd36-4e58-a3f2-54a9b9190130',
-  deleteIcon:    'https://www.figma.com/api/mcp/asset/4971ed8a-dfd0-4fee-bc9c-71ba2b2da1bd',
+  swarmsAvatar:  '/image/chat_swarmsAvatar.webp',
+  soundIcon:     '/image/chat_soundIcon.webp',
+  copyIcon:      '/image/chat_copyIcon.webp',
+  syncIcon:      '/image/chat_syncIcon.webp',
+  thumbDownIcon: '/image/chat_thumbDownIcon.webp',
+  deleteIcon:    '/image/chat_deleteIcon.webp',
 }
 
 const ASSISTANT_REPLY = `Swarms is the enterprise-grade, production-ready multi-agent orchestration framework created by kyegomez. Build, deploy....`

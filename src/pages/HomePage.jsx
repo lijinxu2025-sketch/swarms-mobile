@@ -4,44 +4,44 @@ import StatusBar from '../components/StatusBar'
 // ─── Figma Asset URLs ────────────────────────────────────────────────────────
 const ASSETS = {
   // Status bar right icons
-  statusRight: 'https://www.figma.com/api/mcp/asset/dc315817-6270-4143-907f-2977ed0eec89',
+  statusRight: '/image/home_statusRight.webp',
   // Search & filter
-  iconSearch: 'https://www.figma.com/api/mcp/asset/888e77e8-7537-4b47-9d0a-c51b539ce17e',
-  iconFilter: 'https://www.figma.com/api/mcp/asset/c6e07612-312d-49d9-9611-f1fc1930561b',
+  iconSearch: '/image/home_iconSearch.webp',
+  iconFilter: '/image/home_iconFilter.webp',
   // Chevron right
-  chevronRight: 'https://www.figma.com/api/mcp/asset/119c4f8d-9cd5-446a-99d1-025d366eda19',
+  chevronRight: '/image/home_chevronRight.webp',
   // Star icon
-  iconStar: 'https://www.figma.com/api/mcp/asset/9c84bc97-6721-4f85-ba6c-229db2d00504',
+  iconStar: '/image/home_iconStar.webp',
   // User avatar placeholder
-  avatarP: 'https://www.figma.com/api/mcp/asset/3179f409-df81-49f0-a4cc-635106df3151',
+  avatarP: '/image/home_avatarP.webp',
   // Banner 1 assets
-  ellipse1: 'https://www.figma.com/api/mcp/asset/c9e3f574-23d8-4f61-b8a3-90da3e2aea23',
-  ellipse2: 'https://www.figma.com/api/mcp/asset/709f0cb9-2424-45c6-90da-8beed52d791e',
-  robotShadow: 'https://www.figma.com/api/mcp/asset/5e624186-ca25-42c3-a423-ab33bf94cd46',
-  robotImg: 'https://www.figma.com/api/mcp/asset/072a6ec9-b382-4754-8cdb-1a94867bfc50',
+  ellipse1: '/image/home_ellipse1.webp',
+  ellipse2: '/image/home_ellipse2.webp',
+  robotShadow: '/image/home_robotShadow.webp',
+  robotImg: '/image/home_robotImg.webp',
   // Banner 2 assets
-  ellipse3: 'https://www.figma.com/api/mcp/asset/507e6b71-0f03-4829-9ca6-23a13776b0cb',
-  ellipse4: 'https://www.figma.com/api/mcp/asset/e0fa0884-6ed3-4d06-93dc-47fd096454fa',
-  bannerPerson: 'https://www.figma.com/api/mcp/asset/5615b9c8-f5fe-4b48-8f7d-234744584e70',
-  bannerBot: 'https://www.figma.com/api/mcp/asset/ec998cbc-4066-4924-92d1-4de25c0a4936',
+  ellipse3: '/image/home_ellipse3.webp',
+  ellipse4: '/image/home_ellipse4.webp',
+  bannerPerson: '/image/home_bannerPerson.webp',
+  bannerBot: '/image/home_bannerBot.webp',
   // Category icons (masks)
-  catMaskBg: 'https://www.figma.com/api/mcp/asset/347e0b19-ed63-4f6e-87de-fb2e1458c8cd',
-  catPrompt: 'https://www.figma.com/api/mcp/asset/df0bc403-027e-456d-870c-3f2c94f3af04',
-  catAgents: 'https://www.figma.com/api/mcp/asset/b8d8250a-c866-4b8e-a06d-1102ffd7d52a',
-  catTools: 'https://www.figma.com/api/mcp/asset/4e9439a6-5a78-48a2-8ae0-45eb125aba2a',
+  catMaskBg: '/image/home_catMaskBg.webp',
+  catPrompt: '/image/home_catPrompt.webp',
+  catAgents: '/image/home_catAgents.webp',
+  catTools: '/image/home_catTools.webp',
   // Agent card images
-  card1: 'https://www.figma.com/api/mcp/asset/2916443c-41b4-4d68-88c2-9349ea573be6',
-  card2: 'https://www.figma.com/api/mcp/asset/35d75c72-a1d9-4f3c-9d3d-0db5641a6706',
-  card3: 'https://www.figma.com/api/mcp/asset/012a4018-5ba7-4fb9-9cde-9c29e8570eb0',
-  card4: 'https://www.figma.com/api/mcp/asset/849da9a0-396c-47b7-b973-1412f98f8450',
-  card5: 'https://www.figma.com/api/mcp/asset/f125b9b6-2481-4f80-822b-eab86becae53',
-  card6: 'https://www.figma.com/api/mcp/asset/5ca1c517-5657-4783-9b21-15c6e56d3bbe',
+  card1: '/image/home_card1.webp',
+  card2: '/image/home_card2.webp',
+  card3: '/image/home_card3.webp',
+  card4: '/image/home_card4.webp',
+  card5: '/image/home_card5.webp',
+  card6: '/image/home_card6.webp',
   // Bottom nav icons
-  navChat: 'https://www.figma.com/api/mcp/asset/289f92ba-c8ab-4e35-87be-1bdea39fe508',
-  navChatActive: 'https://www.figma.com/api/mcp/asset/38938ff5-cf79-4ba2-babf-66fb19559e3d',
-  navHome: 'https://www.figma.com/api/mcp/asset/049db54d-396e-4f6c-8021-8b4d14eada15',
-  navProfile: 'https://www.figma.com/api/mcp/asset/cf0a53a6-c28b-4226-b6e2-a9db17f33215',
-  navApps: 'https://www.figma.com/api/mcp/asset/f7800916-9891-4f98-9863-5c365ef0ad90',
+  navChat: '/image/home_navChat.webp',
+  navChatActive: '/image/chat_navChatFilled.webp',
+  navHome: '/image/home_navHome.webp',
+  navProfile: '/image/home_navProfile.webp',
+  navApps: '/image/home_navApps.webp',
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────

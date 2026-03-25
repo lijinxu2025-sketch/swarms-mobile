@@ -2,12 +2,12 @@ import StatusBar from '../components/StatusBar'
 
 // ─── Figma Asset URLs ─────────────────────────────────────────────────────────
 const ASSETS = {
-  agent1Icon:      'https://www.figma.com/api/mcp/asset/394a07be-dea4-4ad1-a21c-f09d1b3cf955',
-  agent2Icon:      'https://www.figma.com/api/mcp/asset/87694f70-9cf4-44e2-bf25-e33833ed47ec',
-  settingsIcon:    'https://www.figma.com/api/mcp/asset/4c8687c6-17f2-446b-aa61-e7c7304883cf',
-  marketplaceIcon: 'https://www.figma.com/api/mcp/asset/586548a2-e0cb-4f83-b680-ecf9609b78cd',
-  addIcon:         'https://www.figma.com/api/mcp/asset/1276d079-1196-425e-b178-fdbaeaeb83da',
-  chevronDown:     'https://www.figma.com/api/mcp/asset/a96aaeec-2190-4eb7-a428-f10a877f61c2',
+  agent1Icon:      '/image/config_agent1Icon.webp',
+  agent2Icon:      '/image/config_agent2Icon.webp',
+  settingsIcon:    '/image/config_settingsIcon.webp',
+  marketplaceIcon: '/image/config_marketplaceIcon.webp',
+  addIcon:         '/image/config_addIcon.webp',
+  chevronDown:     '/image/config_chevronDown.webp',
 }
 
 const AGENTS = [
