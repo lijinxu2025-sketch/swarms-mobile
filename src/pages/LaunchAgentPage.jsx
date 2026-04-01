@@ -104,6 +104,72 @@ function SelectField({ placeholder }) {
   )
 }
 
+const CATEGORIES = [
+  'All', 'Non x402', 'x402', 'Healthcare', 'Education',
+  'Finance', 'Research', 'Public Safety', 'Marketing',
+  'Sales', 'Customer Support', 'Other',
+]
+
+function CategorySelect({ selected, onChange }) {
+  const [open, setOpen] = useState(false)
+
+  function toggle(cat) {
+    if (selected.includes(cat)) {
+      onChange(selected.filter(c => c !== cat))
+    } else {
+      onChange([...selected, cat])
+    }
+  }
+
+  const displayText = selected.length === 0
+    ? 'Select categories'
+    : selected.join(', ')
+
+  return (
+    <div className="relative">
+      {/* Trigger */}
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        className="w-full h-[49px] rounded-[8px] px-[12px] bg-white/[0.08] flex items-center justify-between cursor-pointer border-0"
+      >
+        <span className={`text-[14px] font-medium truncate pr-2 ${selected.length === 0 ? 'text-white/50' : 'text-white'}`}>
+          {displayText}
+        </span>
+        <span className={`transition-transform duration-200 shrink-0 ${open ? 'rotate-180' : ''}`}>
+          <ChevronDown />
+        </span>
+      </button>
+
+      {/* Dropdown list */}
+      {open && (
+        <div className="absolute left-0 right-0 top-[53px] z-50 bg-[#1a1a1a] border border-white/[0.12] rounded-[10px] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
+          {CATEGORIES.map((cat, i) => {
+            const isSelected = selected.includes(cat)
+            return (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => toggle(cat)}
+                className={`w-full flex items-center justify-between px-[16px] py-[13px] text-[14px] font-medium cursor-pointer border-0 text-left transition-colors ${
+                  i < CATEGORIES.length - 1 ? 'border-b border-white/[0.06]' : ''
+                } ${isSelected ? 'bg-white/[0.06] text-white' : 'bg-transparent text-white/70 hover:bg-white/[0.04]'}`}
+              >
+                <span>{cat}</span>
+                {isSelected && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12l5 5L19 7" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
+              </button>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ─── Type-specific sections ───────────────────────────────────────────────────
 function AgentSection({ codeTab, setCodeTab }) {
   const tabs = ['code', 'x402 URL', 'MCP URL']
@@ -251,11 +317,12 @@ function PricingButton({ label, active, onClick }) {
 export default function LaunchAgentPage({ onBack }) {
   const [type, setType]         = useState('agent')
   const [codeTab, setCodeTab]   = useState('code')
-  const [pricing, setPricing]   = useState('Free')
-  const [name, setName]         = useState('')
-  const [description, setDesc]  = useState('')
-  const [githubUrl, setGithub]  = useState('')
-  const [tags, setTags]         = useState('')
+  const [pricing, setPricing]       = useState('Free')
+  const [name, setName]             = useState('')
+  const [description, setDesc]      = useState('')
+  const [githubUrl, setGithub]      = useState('')
+  const [tags, setTags]             = useState('')
+  const [categories, setCategories] = useState([])
 
   const typeConfig = {
     agent:  { label: 'Agent',  Icon: AgentIcon,  submitLabel: 'Submit agent' },
@@ -265,7 +332,7 @@ export default function LaunchAgentPage({ onBack }) {
 
   function handleClear() {
     setName(''); setDesc(''); setGithub(''); setTags('')
-    setPricing('Free')
+    setPricing('Free'); setCategories([])
   }
 
   return (
@@ -382,7 +449,7 @@ export default function LaunchAgentPage({ onBack }) {
         {/* ── Categories ── */}
         <div className="mb-[16px]">
           <FieldLabel>Categories</FieldLabel>
-          <SelectField placeholder="Select categories" />
+          <CategorySelect selected={categories} onChange={setCategories} />
         </div>
 
         {/* ── Tags ── */}
