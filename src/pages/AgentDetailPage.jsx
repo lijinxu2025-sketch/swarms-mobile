@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import StatusBar from '../components/StatusBar'
+import TradeModal from '../components/TradeModal'
 
 // ─── Assets ───────────────────────────────────────────────────────────────────
 const ASSETS = {
@@ -110,8 +111,13 @@ function SectionHeader({ title, chevron = 'right' }) {
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
-export default function AgentDetailPage({ onBack }) {
+export default function AgentDetailPage({ onBack, onReviews }) {
   const [promptTab, setPromptTab] = useState('Preview')
+  const [showTrade,    setShowTrade]    = useState(false)
+  const [chatOpen,     setChatOpen]     = useState(false)
+  const [imagesOpen,   setImagesOpen]   = useState(true)
+  const [metadataOpen, setMetadataOpen] = useState(true)
+  const [tokenOpen,    setTokenOpen]    = useState(true)
 
   const TABS = ['Preview', 'Markdown', 'Text', 'Framework', 'Api']
 
@@ -231,18 +237,31 @@ export default function AgentDetailPage({ onBack }) {
 
         <div className="h-[8px] bg-black" />
 
-        {/* ── Chat (collapsed) ── */}
-        <div className="bg-[rgba(255,255,255,0.08)] px-[24px] py-[16px]">
-          <SectionHeader title="Chat" chevron="down" />
-        </div>
+        {/* ── Chat ── */}
+        <button
+          onClick={() => setChatOpen(o => !o)}
+          className="bg-[rgba(255,255,255,0.08)] px-[24px] py-[16px] w-full border-0 cursor-pointer text-left"
+        >
+          <SectionHeader title="Chat" chevron={chatOpen ? 'up' : 'down'} />
+        </button>
+        {chatOpen && (
+          <div className="bg-[rgba(255,255,255,0.08)] px-[24px] py-[16px]">
+            <p className="text-white text-[12px] font-normal opacity-50 m-0">Chat functionality coming soon.</p>
+          </div>
+        )}
 
         <div className="h-[8px] bg-black" />
 
-        {/* ── Images (collapsed) ── */}
-        <div className="bg-[rgba(255,255,255,0.08)] px-[24px] py-[16px]">
-          <SectionHeader title="Images" chevron="up" />
-        </div>
+        {/* ── Images ── */}
+        <button
+          onClick={() => setImagesOpen(o => !o)}
+          className="bg-[rgba(255,255,255,0.08)] px-[24px] py-[16px] w-full border-0 cursor-pointer text-left"
+        >
+          <SectionHeader title="Images" chevron={imagesOpen ? 'up' : 'down'} />
+        </button>
 
+        {imagesOpen && (
+          <>
         <div className="h-[8px] bg-black" />
 
         {/* ── AI Generated Images ── */}
@@ -290,75 +309,98 @@ export default function AgentDetailPage({ onBack }) {
             ))}
           </div>
         </div>
+          </>
+        )}
 
         <div className="h-[8px] bg-black" />
 
         {/* ── Metadata ── */}
         <div className="bg-[rgba(255,255,255,0.08)] px-[24px] py-[16px] flex flex-col gap-[10px]">
-          <SectionHeader title="Metadata" chevron="up" />
-          {/* Prompt ID */}
-          <div className="flex flex-col gap-[10px]">
-            <div className="flex items-center justify-between">
-              <span className="text-white text-[12px] font-normal">Prompt ID</span>
-              <div className="bg-[#393939] rounded-[4px] w-6 h-6 flex items-center justify-center">
-                <img src={ASSETS.copyIcon} alt="" className="w-[14px] h-[14px]" />
+          <button
+            onClick={() => setMetadataOpen(o => !o)}
+            className="bg-transparent border-0 cursor-pointer p-0 w-full text-left"
+          >
+            <SectionHeader title="Metadata" chevron={metadataOpen ? 'up' : 'down'} />
+          </button>
+          {metadataOpen && (
+            <>
+              {/* Prompt ID */}
+              <div className="flex flex-col gap-[10px]">
+                <div className="flex items-center justify-between">
+                  <span className="text-white text-[12px] font-normal">Prompt ID</span>
+                  <div className="bg-[#393939] rounded-[4px] w-6 h-6 flex items-center justify-center">
+                    <img src={ASSETS.copyIcon} alt="" className="w-[14px] h-[14px]" />
+                  </div>
+                </div>
+                <span className="text-white text-[12px] font-normal break-all">6d165e47-1827-4abe-9a84-b25005d8e3b4</span>
               </div>
-            </div>
-            <span className="text-white text-[12px] font-normal break-all">6d165e47-1827-4abe-9a84-b25005d8e3b4</span>
-          </div>
-          {/* Rows */}
-          {METADATA_ROWS.map(({ label, value }) => (
-            <div key={label} className="flex items-center justify-between">
-              <span className="text-white text-[12px] font-normal">{label}</span>
-              <span className="text-white text-[12px] font-normal">{value}</span>
-            </div>
-          ))}
-          {/* Business Model - green */}
-          <div className="flex items-center justify-between">
-            <span className="text-white text-[12px] font-normal">Business Model</span>
-            <span className="text-[#52df81] text-[12px] font-normal">Tokenized</span>
-          </div>
+              {/* Rows */}
+              {METADATA_ROWS.map(({ label, value }) => (
+                <div key={label} className="flex items-center justify-between">
+                  <span className="text-white text-[12px] font-normal">{label}</span>
+                  <span className="text-white text-[12px] font-normal">{value}</span>
+                </div>
+              ))}
+              {/* Business Model - green */}
+              <div className="flex items-center justify-between">
+                <span className="text-white text-[12px] font-normal">Business Model</span>
+                <span className="text-[#52df81] text-[12px] font-normal">Tokenized</span>
+              </div>
+            </>
+          )}
         </div>
 
         <div className="h-[8px] bg-black" />
 
         {/* ── Tokenization Details ── */}
         <div className="bg-[rgba(255,255,255,0.08)] px-[24px] py-[16px] flex flex-col gap-[10px]">
-          <SectionHeader title="Tokenization Details" chevron="up" />
-          {/* Contract Address */}
-          <div className="flex flex-col gap-[10px]">
-            <div className="flex items-center justify-between">
-              <span className="text-white text-[12px] font-normal">Contract Address</span>
-              <div className="bg-[#393939] rounded-[4px] w-6 h-6 flex items-center justify-center">
-                <img src={ASSETS.copyIcon} alt="" className="w-[14px] h-[14px]" />
+          <button
+            onClick={() => setTokenOpen(o => !o)}
+            className="bg-transparent border-0 cursor-pointer p-0 w-full text-left"
+          >
+            <SectionHeader title="Tokenization Details" chevron={tokenOpen ? 'up' : 'down'} />
+          </button>
+          {tokenOpen && (
+            <>
+              {/* Contract Address */}
+              <div className="flex flex-col gap-[10px]">
+                <div className="flex items-center justify-between">
+                  <span className="text-white text-[12px] font-normal">Contract Address</span>
+                  <div className="bg-[#393939] rounded-[4px] w-6 h-6 flex items-center justify-center">
+                    <img src={ASSETS.copyIcon} alt="" className="w-[14px] h-[14px]" />
+                  </div>
+                </div>
+                <span className="text-white text-[12px] font-normal break-all">GovbZFQxSk8rGy5S5L54uSWmrGaUJngEypSUDfwswrm</span>
               </div>
-            </div>
-            <span className="text-white text-[12px] font-normal break-all">GovbZFQxSk8rGy5S5L54uSWmrGaUJngEypSUDfwswrm</span>
-          </div>
-          {TOKEN_ROWS.map(({ label, value }) => (
-            <div key={label} className="flex items-center justify-between">
-              <span className="text-white text-[12px] font-normal">{label}</span>
-              <span className="text-white text-[12px] font-normal">{value}</span>
-            </div>
-          ))}
-          {/* Pool Address */}
-          <div className="flex flex-col gap-[10px]">
-            <div className="flex items-center justify-between">
-              <span className="text-white text-[12px] font-normal">Pool Address</span>
-              <div className="bg-[#393939] rounded-[4px] w-6 h-6 flex items-center justify-center">
-                <img src={ASSETS.copyIcon} alt="" className="w-[14px] h-[14px]" />
+              {TOKEN_ROWS.map(({ label, value }) => (
+                <div key={label} className="flex items-center justify-between">
+                  <span className="text-white text-[12px] font-normal">{label}</span>
+                  <span className="text-white text-[12px] font-normal">{value}</span>
+                </div>
+              ))}
+              {/* Pool Address */}
+              <div className="flex flex-col gap-[10px]">
+                <div className="flex items-center justify-between">
+                  <span className="text-white text-[12px] font-normal">Pool Address</span>
+                  <div className="bg-[#393939] rounded-[4px] w-6 h-6 flex items-center justify-center">
+                    <img src={ASSETS.copyIcon} alt="" className="w-[14px] h-[14px]" />
+                  </div>
+                </div>
+                <span className="text-white text-[12px] font-normal break-all">3TKV9xXhigwbDUDG4dL4S8L9PHiDFMf3yBXvWrG</span>
               </div>
-            </div>
-            <span className="text-white text-[12px] font-normal break-all">3TKV9xXhigwbDUDG4dL4S8L9PHiDFMf3yBXvWrG</span>
-          </div>
+            </>
+          )}
         </div>
 
         <div className="h-[8px] bg-black" />
 
         {/* ── Reviews ── */}
-        <div className="bg-[rgba(255,255,255,0.08)] px-[24px] py-[16px]">
+        <button
+          onClick={onReviews}
+          className="bg-[rgba(255,255,255,0.08)] px-[24px] py-[16px] w-full border-0 cursor-pointer text-left"
+        >
           <SectionHeader title="Reviews" chevron="right" />
-        </div>
+        </button>
 
         <div className="h-[8px] bg-black" />
 
@@ -415,10 +457,16 @@ export default function AgentDetailPage({ onBack }) {
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-[#111]/70" />
       </div>
       <div className="absolute bottom-[12px] left-[24px] right-[24px]">
-        <button className="w-full h-[58px] bg-[#ed1717] rounded-[16px] border-0 cursor-pointer flex items-center justify-center">
+        <button
+          onClick={() => setShowTrade(true)}
+          className="w-full h-[58px] bg-[#ed1717] rounded-[16px] border-0 cursor-pointer flex items-center justify-center"
+        >
           <span className="text-white text-[16px] font-bold">Trade now</span>
         </button>
       </div>
+
+      {/* Trade modal */}
+      {showTrade && <TradeModal onClose={() => setShowTrade(false)} />}
     </div>
   )
 }

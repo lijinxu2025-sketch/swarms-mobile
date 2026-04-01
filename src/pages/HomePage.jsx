@@ -238,7 +238,7 @@ function Categories() {
   )
 }
 
-function BottomNav({ onChat }) {
+function BottomNav({ onChat, onSettings, onLaunch }) {
   return (
     <div className="shrink-0 relative h-[88px]">
       {/* Gradient fade */}
@@ -258,13 +258,9 @@ function BottomNav({ onChat }) {
           <button className="w-[51px] h-[54px] rounded-[10px] bg-white/10 flex items-center justify-center border-0 cursor-pointer">
             <img src={ASSETS.navProfile} alt="Profile" className="w-6 h-6" />
           </button>
-          {/* Home (center, red) */}
-          <button className="w-[52px] h-[52px] rounded-[10px] bg-[#ed1717] flex items-center justify-center border-0 cursor-pointer">
+          {/* Home (center, red) — opens Launch Agent */}
+          <button onClick={onLaunch} className="w-[52px] h-[52px] rounded-[10px] bg-[#ed1717] flex items-center justify-center border-0 cursor-pointer">
             <img src={ASSETS.navHome} alt="Home" className="w-5 h-5" />
-          </button>
-          {/* Apps */}
-          <button className="w-[51px] h-[54px] rounded-[10px] bg-white/10 flex items-center justify-center border-0 cursor-pointer">
-            <img src={ASSETS.navApps} alt="Apps" className="w-6 h-6" />
           </button>
           {/* Settings */}
           <button className="w-[51px] h-[54px] rounded-[10px] bg-white/10 flex items-center justify-center border-0 cursor-pointer">
@@ -275,6 +271,10 @@ function BottomNav({ onChat }) {
               <rect x="10" y="0" width="7.8" height="7.8" rx="2" stroke="#aaaaab" strokeWidth="1.5" fill="none" transform="rotate(45 13.9 3.9)" />
             </svg>
           </button>
+          {/* Apps */}
+          <button onClick={onSettings} className="w-[51px] h-[54px] rounded-[10px] bg-white/10 flex items-center justify-center border-0 cursor-pointer">
+            <img src={ASSETS.navApps} alt="Apps" className="w-6 h-6" />
+          </button>
         </div>
       </div>
     </div>
@@ -282,7 +282,7 @@ function BottomNav({ onChat }) {
 }
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
-export default function HomePage({ onSeeAllTrending, onFilter, onSearch, onAgentClick, onChat }) {
+export default function HomePage({ onSeeAllTrending, onFilter, onSearch, onAgentClick, onChat, onSettings, onLaunchAgent }) {
   return (
     <div className="flex flex-col h-full bg-black" style={{ fontFamily: "'Montserrat', sans-serif" }}>
       <StatusBar />
@@ -310,7 +310,7 @@ export default function HomePage({ onSeeAllTrending, onFilter, onSearch, onAgent
         </div>
       </div>
 
-      <BottomNav onChat={onChat} />
+      <BottomNav onChat={onChat} onSettings={onSettings} onLaunch={onLaunchAgent} />
     </div>
   )
 }
