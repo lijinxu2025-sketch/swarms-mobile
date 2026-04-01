@@ -113,17 +113,10 @@ const CATEGORIES = [
 function CategorySelect({ selected, onChange }) {
   const [open, setOpen] = useState(false)
 
-  function toggle(cat) {
-    if (selected.includes(cat)) {
-      onChange(selected.filter(c => c !== cat))
-    } else {
-      onChange([...selected, cat])
-    }
+  function select(cat) {
+    onChange(cat)
+    setOpen(false)
   }
-
-  const displayText = selected.length === 0
-    ? 'Select categories'
-    : selected.join(', ')
 
   return (
     <div className="relative">
@@ -133,8 +126,8 @@ function CategorySelect({ selected, onChange }) {
         onClick={() => setOpen(o => !o)}
         className="w-full h-[49px] rounded-[8px] px-[12px] bg-white/[0.08] flex items-center justify-between cursor-pointer border-0"
       >
-        <span className={`text-[14px] font-medium truncate pr-2 ${selected.length === 0 ? 'text-white/50' : 'text-white'}`}>
-          {displayText}
+        <span className={`text-[14px] font-medium truncate pr-2 ${!selected ? 'text-white/50' : 'text-white'}`}>
+          {selected || 'Select categories'}
         </span>
         <span className={`transition-transform duration-200 shrink-0 ${open ? 'rotate-180' : ''}`}>
           <ChevronDown />
@@ -145,15 +138,15 @@ function CategorySelect({ selected, onChange }) {
       {open && (
         <div className="absolute left-0 right-0 top-[53px] z-50 bg-[#1a1a1a] border border-white/[0.12] rounded-[10px] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
           {CATEGORIES.map((cat, i) => {
-            const isSelected = selected.includes(cat)
+            const isSelected = selected === cat
             return (
               <button
                 key={cat}
                 type="button"
-                onClick={() => toggle(cat)}
+                onClick={() => select(cat)}
                 className={`w-full flex items-center justify-between px-[16px] py-[13px] text-[14px] font-medium cursor-pointer border-0 text-left transition-colors ${
                   i < CATEGORIES.length - 1 ? 'border-b border-white/[0.06]' : ''
-                } ${isSelected ? 'bg-white/[0.06] text-white' : 'bg-transparent text-white/70 hover:bg-white/[0.04]'}`}
+                } ${isSelected ? 'bg-white/[0.06] text-white' : 'bg-transparent text-white/70'}`}
               >
                 <span>{cat}</span>
                 {isSelected && (
@@ -322,7 +315,7 @@ export default function LaunchAgentPage({ onBack }) {
   const [description, setDesc]      = useState('')
   const [githubUrl, setGithub]      = useState('')
   const [tags, setTags]             = useState('')
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState('')
 
   const typeConfig = {
     agent:  { label: 'Agent',  Icon: AgentIcon,  submitLabel: 'Submit agent' },
@@ -332,7 +325,7 @@ export default function LaunchAgentPage({ onBack }) {
 
   function handleClear() {
     setName(''); setDesc(''); setGithub(''); setTags('')
-    setPricing('Free'); setCategories([])
+    setPricing('Free'); setCategories('')
   }
 
   return (
