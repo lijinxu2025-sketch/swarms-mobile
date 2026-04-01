@@ -1,5 +1,118 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import StatusBar from '../components/StatusBar'
+
+// ─── Loading Modal ─────────────────────────────────────────────────────────────
+function LoadingModal() {
+  const [rotation, setRotation] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setRotation(r => (r + 6) % 360), 16)
+    return () => clearInterval(id)
+  }, [])
+
+  // 16 dots arranged in a circle, varying size + opacity
+  const dots = Array.from({ length: 16 }, (_, i) => {
+    const angle = (i / 16) * 2 * Math.PI
+    const r = 48
+    const cx = 60 + r * Math.cos(angle)
+    const cy = 60 + r * Math.sin(angle)
+    const progress = i / 16
+    const size = 3 + progress * 5
+    const opacity = 0.15 + progress * 0.85
+    return { cx, cy, size, opacity }
+  })
+
+  return (
+    <div className="absolute inset-0 z-50 flex items-center justify-center"
+      style={{ backdropFilter: 'blur(4px)', background: 'rgba(0,0,0,0.6)' }}>
+      <div className="bg-[#222] rounded-[21px] px-[28px] pt-[35px] pb-[28px] w-[297px] flex flex-col items-center gap-[28px]"
+        style={{ fontFamily: "'Montserrat', sans-serif" }}>
+        {/* Spinner */}
+        <div style={{ transform: `rotate(${rotation}deg)`, transition: 'none' }}>
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            {dots.map((d, i) => (
+              <circle key={i} cx={d.cx} cy={d.cy} r={d.size}
+                fill="#ed1717" opacity={d.opacity} />
+            ))}
+          </svg>
+        </div>
+        {/* Text */}
+        <div className="text-center flex flex-col gap-[14px]">
+          <p className="text-white text-[21px] font-bold leading-[1.6]">Launching Your Prompt...</p>
+          <p className="text-white text-[14px] font-normal leading-[1.6] tracking-[0.17px]">
+            Please wait while we publish your product to the marketplace
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ─── Success Modal ─────────────────────────────────────────────────────────────
+function SuccessModal({ onViewPrompt, onPublishAnother }) {
+  // scattered decorative dots positions
+  const decorDots = [
+    { top: 18, left: 54, size: 13, color: '#4ade80' },
+    { top: 22, left: 108, size: 5,  color: '#4ade80' },
+    { top: 38, left: 4,  size: 9,  color: '#4ade80' },
+    { top: 96, left: 52, size: 6,  color: '#4ade80' },
+    { top: 94, left: 106, size: 4, color: '#4ade80' },
+    { top: 112, left: 148, size: 4, color: '#4ade80' },
+    { top: 64, left: 150, size: 4, color: '#4ade80' },
+    { top: 2,  left: 92, size: 4,  color: '#4ade80' },
+    { top: 0,  left: 10, size: 17, color: '#86efac' },
+  ]
+
+  return (
+    <div className="absolute inset-0 z-50 flex items-center justify-center"
+      style={{ backdropFilter: 'blur(4px)', background: 'rgba(0,0,0,0.6)' }}>
+      <div className="bg-[#222] rounded-[21px] px-[28px] pt-[35px] pb-[28px] w-[297px] flex flex-col items-center gap-[28px]"
+        style={{ fontFamily: "'Montserrat', sans-serif" }}>
+        {/* Success icon with decorative dots */}
+        <div className="relative w-[163px] h-[163px] flex items-center justify-center">
+          {decorDots.map((d, i) => (
+            <div key={i} className="absolute rounded-full"
+              style={{ top: d.top, left: d.left, width: d.size, height: d.size, background: d.color }} />
+          ))}
+          {/* Green circle */}
+          <div className="w-[123px] h-[123px] rounded-full flex items-center justify-center"
+            style={{ background: 'linear-gradient(135deg, #4ade80 0%, #16a34a 100%)' }}>
+            {/* Checkmark */}
+            <div className="w-[52px] h-[52px] bg-white/20 rounded-[10px] flex items-center justify-center">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12l5 5L19 7" stroke="white" strokeWidth="2.5"
+                  strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Text */}
+        <div className="text-center flex flex-col gap-[14px]">
+          <p className="text-white text-[21px] font-bold leading-[1.6]">Successful!</p>
+          <p className="text-white text-[14px] font-normal leading-[1.6] tracking-[0.17px]">
+            Your prompt has been published to the marketplace and is now live!
+          </p>
+        </div>
+
+        {/* Buttons */}
+        <div className="flex flex-col gap-[10px] w-full items-center">
+          <button
+            onClick={onViewPrompt}
+            className="w-[240px] h-[51px] bg-[#ed1717] rounded-[8px] text-white text-[14px] font-bold border-0 cursor-pointer"
+          >
+            View Your Prompt
+          </button>
+          <button
+            onClick={onPublishAnother}
+            className="w-full h-[51px] rounded-[8px] text-white text-[14px] font-bold cursor-pointer bg-transparent border border-white/50"
+          >
+            Publish Another
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 function AgentIcon({ active }) {
@@ -321,6 +434,7 @@ export default function LaunchAgentPage({ onBack }) {
   const [categories, setCategories] = useState('')
   const [agentLang, setAgentLang]   = useState('')
   const [toolLang, setToolLang]     = useState('')
+  const [submitState, setSubmitState] = useState('idle') // 'idle' | 'loading' | 'success'
 
   const typeConfig = {
     agent:  { label: 'Agent',  Icon: AgentIcon,  submitLabel: 'Submit agent' },
@@ -331,11 +445,18 @@ export default function LaunchAgentPage({ onBack }) {
   function handleClear() {
     setName(''); setDesc(''); setGithub(''); setTags('')
     setPricing('Free'); setCategories(''); setAgentLang(''); setToolLang('')
+    setSubmitState('idle')
+  }
+
+  function handleSubmit() {
+    if (type !== 'prompt') return
+    setSubmitState('loading')
+    setTimeout(() => setSubmitState('success'), 2000)
   }
 
   return (
     <div
-      className="flex flex-col h-full bg-black"
+      className="flex flex-col h-full bg-black relative"
       style={{ fontFamily: "'Montserrat', sans-serif" }}
     >
       <StatusBar />
@@ -536,11 +657,21 @@ export default function LaunchAgentPage({ onBack }) {
           Clear Form
         </button>
         <button
+          onClick={handleSubmit}
           className="w-[154px] h-[58px] rounded-[16px] bg-[#ed1717] text-white text-[16px] font-bold border-0 cursor-pointer"
         >
           {typeConfig[type].submitLabel}
         </button>
       </div>
+
+      {/* ── Modals ── */}
+      {submitState === 'loading' && <LoadingModal />}
+      {submitState === 'success' && (
+        <SuccessModal
+          onViewPrompt={onBack}
+          onPublishAnother={() => { handleClear(); setType('prompt') }}
+        />
+      )}
     </div>
   )
 }
