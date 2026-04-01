@@ -110,45 +110,48 @@ const CATEGORIES = [
   'Sales', 'Customer Support', 'Other',
 ]
 
-function CategorySelect({ selected, onChange }) {
+const LANGUAGES = [
+  'Python', 'Javascript', 'Go', 'Rust', 'Java',
+  'C++', 'C#', 'C', 'Php', 'Sql',
+]
+
+function SingleSelect({ options, selected, onChange, placeholder }) {
   const [open, setOpen] = useState(false)
 
-  function select(cat) {
-    onChange(cat)
+  function select(item) {
+    onChange(item)
     setOpen(false)
   }
 
   return (
     <div className="relative">
-      {/* Trigger */}
       <button
         type="button"
         onClick={() => setOpen(o => !o)}
         className="w-full h-[49px] rounded-[8px] px-[12px] bg-white/[0.08] flex items-center justify-between cursor-pointer border-0"
       >
         <span className={`text-[14px] font-medium truncate pr-2 ${!selected ? 'text-white/50' : 'text-white'}`}>
-          {selected || 'Select categories'}
+          {selected || placeholder}
         </span>
         <span className={`transition-transform duration-200 shrink-0 ${open ? 'rotate-180' : ''}`}>
           <ChevronDown />
         </span>
       </button>
 
-      {/* Dropdown list */}
       {open && (
         <div className="absolute left-0 right-0 top-[53px] z-50 bg-[#1a1a1a] border border-white/[0.12] rounded-[10px] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
-          {CATEGORIES.map((cat, i) => {
-            const isSelected = selected === cat
+          {options.map((item, i) => {
+            const isSelected = selected === item
             return (
               <button
-                key={cat}
+                key={item}
                 type="button"
-                onClick={() => select(cat)}
+                onClick={() => select(item)}
                 className={`w-full flex items-center justify-between px-[16px] py-[13px] text-[14px] font-medium cursor-pointer border-0 text-left transition-colors ${
-                  i < CATEGORIES.length - 1 ? 'border-b border-white/[0.06]' : ''
+                  i < options.length - 1 ? 'border-b border-white/[0.06]' : ''
                 } ${isSelected ? 'bg-white/[0.06] text-white' : 'bg-transparent text-white/70'}`}
               >
-                <span>{cat}</span>
+                <span>{item}</span>
                 {isSelected && (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                     <path d="M5 12l5 5L19 7" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -164,7 +167,7 @@ function CategorySelect({ selected, onChange }) {
 }
 
 // ─── Type-specific sections ───────────────────────────────────────────────────
-function AgentSection({ codeTab, setCodeTab }) {
+function AgentSection({ codeTab, setCodeTab, lang, setLang }) {
   const tabs = ['code', 'x402 URL', 'MCP URL']
   return (
     <div className="flex flex-col gap-[16px]">
@@ -198,7 +201,7 @@ function AgentSection({ codeTab, setCodeTab }) {
           {/* Programming Language */}
           <div>
             <FieldLabel>Programming Language</FieldLabel>
-            <SelectField placeholder="Python" />
+            <SingleSelect options={LANGUAGES} selected={lang} onChange={setLang} placeholder="Select language" />
           </div>
 
           {/* Package Requirements */}
@@ -253,13 +256,13 @@ function PromptSection() {
   )
 }
 
-function ToolSection() {
+function ToolSection({ lang, setLang }) {
   return (
     <div className="flex flex-col gap-[16px]">
       {/* Programming Language */}
       <div>
         <FieldLabel>Programming Language</FieldLabel>
-        <SelectField placeholder="Python" />
+        <SingleSelect options={LANGUAGES} selected={lang} onChange={setLang} placeholder="Select language" />
       </div>
 
       {/* Package Requirements */}
@@ -316,6 +319,8 @@ export default function LaunchAgentPage({ onBack }) {
   const [githubUrl, setGithub]      = useState('')
   const [tags, setTags]             = useState('')
   const [categories, setCategories] = useState('')
+  const [agentLang, setAgentLang]   = useState('')
+  const [toolLang, setToolLang]     = useState('')
 
   const typeConfig = {
     agent:  { label: 'Agent',  Icon: AgentIcon,  submitLabel: 'Submit agent' },
@@ -325,7 +330,7 @@ export default function LaunchAgentPage({ onBack }) {
 
   function handleClear() {
     setName(''); setDesc(''); setGithub(''); setTags('')
-    setPricing('Free'); setCategories('')
+    setPricing('Free'); setCategories(''); setAgentLang(''); setToolLang('')
   }
 
   return (
@@ -442,7 +447,7 @@ export default function LaunchAgentPage({ onBack }) {
         {/* ── Categories ── */}
         <div className="mb-[16px]">
           <FieldLabel>Categories</FieldLabel>
-          <CategorySelect selected={categories} onChange={setCategories} />
+          <SingleSelect options={CATEGORIES} selected={categories} onChange={setCategories} placeholder="Select categories" />
         </div>
 
         {/* ── Tags ── */}
@@ -473,9 +478,9 @@ export default function LaunchAgentPage({ onBack }) {
 
         {/* ── Type-specific section ── */}
         <div className="mb-[20px]">
-          {type === 'agent'  && <AgentSection codeTab={codeTab} setCodeTab={setCodeTab} />}
+          {type === 'agent'  && <AgentSection codeTab={codeTab} setCodeTab={setCodeTab} lang={agentLang} setLang={setAgentLang} />}
           {type === 'prompt' && <PromptSection />}
-          {type === 'tool'   && <ToolSection />}
+          {type === 'tool'   && <ToolSection lang={toolLang} setLang={setToolLang} />}
         </div>
 
         {/* ── Use Cases ── */}
